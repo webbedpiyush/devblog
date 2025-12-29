@@ -9,6 +9,19 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.16.6"
+    "@astrojs/rss": "^4.0.14",
+    "@astrojs/sitemap": "^3.6.0",
+    "@fontsource/source-code-pro": "^5.2.7",
+    "@resvg/resvg-js": "^2.6.2",
+    "astro": "^5.16.6",
+    "fuse.js": "^7.1.0",
+    "phosphor-svelte": "^3.0.1",
+    "satori": "^0.18.3",
+    "tailwindcss": "^4.1.18"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.50.1",
+    "eslint": "^9.39.2",
+    "prettier": "^3.7.4"
   }
 }

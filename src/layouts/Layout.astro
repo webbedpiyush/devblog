@@ -1,0 +1,43 @@
+---
+import { LOCALE, SITE } from "@config";
+import { ClientRouter } from "astro:transitions";
+
+const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
+
+export interface Props {
+  title?: string;
+  author?: string;
+  description?: string;
+  ogImage?: string;
+  canonicalURL?: string;
+  pubDatetime?: Date;
+  modDatetime?: Date | null;
+  scrollSmooth?: boolean;
+}
+
+const {
+  title = SITE.title,
+  author = SITE.author,
+  description = SITE.desc,
+  ogImage = SITE.ogImage,
+  canonicalURL = new URL(Astro.url.pathname, Astro.site).href,
+  pubDatetime,
+  modDatetime,
+  scrollSmooth = false,
+} = Astro.props;
+
+const socialImageURL = new URL(
+  ogImage ?? SITE.ogImage ?? "og.png",
+  Astro.url.origin
+).href;
+---
+
+<!doctype html>
+<html
+  lang={`${LOCALE.lang} ?? "en"`}
+  class={`${scrollSmooth && "scroll-smooth"}`}>
+  <head> </head>
+  <body>
+    <slot />
+  </body>
+</html>
