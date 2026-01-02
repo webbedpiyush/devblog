@@ -13,11 +13,26 @@ const { activeNav } = Astro.props;
   <a id="skip-to-content" href="#main-content">Skip to content</a>
   <div class="nav-container">
     <div class="top-nav-wrap">
-      <a href="/">
-        {LOGO_IMAGE.enable ? <img /> : SITE.title}
+      <a href="/" class="logo whitespace-nowrap text-skin-accent">
+        {
+          LOGO_IMAGE.enable ? (
+            <img
+              src={`/assets/header.png`}
+              alt={SITE.title}
+              width={LOGO_IMAGE.width}
+              height={LOGO_IMAGE.height}
+            />
+          ) : (
+            SITE.title
+          )
+        }
       </a>
-      <nav>
-        <button>
+      <nav id="nav-menu">
+        <button
+          class="hamburger-menu focus-outline"
+          aria-label="Open menu"
+          aria-expanded="false"
+          aria-controls="menu-items">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -36,18 +51,28 @@ const { activeNav } = Astro.props;
             <line x1="6" y1="6" x2="18" y2="18" class="close"></line>
           </svg>
         </button>
-        <ul>
+        <ul id="menu-items" class="display-none sm:flex">
           <li>
-            <a>Posts</a>
+            <a href="/posts/" class={`${activeNav === "posts" ? "active" : ""}`}
+              >Posts</a
+            >
           </li>
           <li>
-            <a>Tags</a>
+            <a href="/tags/" class={`${activeNav === "tags" ? "active" : ""}`}
+              >Tags</a
+            >
           </li>
           <li>
-            <a>Why?</a>
+            <a href="/why/" class={`${activeNav === "why?" ? "active" : ""}`}
+              >Why?</a
+            >
           </li>
           <li>
-            <LinkButton href="/search/">
+            <LinkButton
+              href="/search/"
+              className={`focus-outline p-3 sm:p-1 ${activeNav === "search" ? "active" : ""} flex`}
+              ariaLabel="search"
+              title="Search">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="scale-100 sm:scale-100"
@@ -57,13 +82,18 @@ const { activeNav } = Astro.props;
                   d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"
                 ></path>
               </svg>
-              <span>Search</span>
+              <span class="sr-only">Search</span>
             </LinkButton>
           </li>
           {
             SITE.lightAndDarkMode && (
               <li>
-                <button>
+                <button
+                  id="theme-btn"
+                  class="focus-outline"
+                  title="Toggles light & dark"
+                  aria-label="auto"
+                  aria-live="polite">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     id="moon-svg"
@@ -88,6 +118,97 @@ const { activeNav } = Astro.props;
   </div>
   <Hr />
 </header>
+
+<style>
+  #skip-to-content {
+    @apply absolute -top-full left-16 z-50 bg-skin-accent px-3 py-2 text-skin-inverted transition-all focus:top-4;
+  }
+
+  .nav-container {
+    @apply mx-auto flex max-w-3xl flex-col items-center justify-between sm:flex-row;
+  }
+
+  .top-nav-wrap {
+    @apply relative flex w-full items-start justify-between p-4 sm:items-center sm:py-8;
+  }
+
+  .logo {
+    @apply absolute py-1 text-xl font-semibold sm:static sm:text-2xl;
+  }
+
+  .hamburger-menu {
+    @apply self-end p-2 sm:hidden;
+  }
+
+  .hamburger-menu svg {
+    @apply h-6 w-6 scale-125 fill-skin-base;
+  }
+
+  nav {
+    @apply flex w-full flex-col items-center sm:ml-2 sm:flex-row sm:justify-end sm:space-x-4 sm:py-0;
+  }
+
+  nav ul {
+    @apply mt-4 grid w-44 grid-cols-2 grid-rows-4 gap-x-2 gap-y-2 sm:ml-0 sm:mt-0 sm:w-auto sm:gap-x-5 sm:gap-y-0;
+  }
+
+  nav ul li {
+    @apply col-span-2 flex items-center justify-center;
+  }
+
+  nav ul li a {
+    @apply w-full px-4 py-3 text-center font-medium hover:text-skin-accent sm:my-0 sm:px-2 sm:py-1;
+  }
+
+  nav ul li:nth-last-child(2) a {
+    @apply w-auto;
+  }
+
+  nav ul li:nth-last-child(1),
+  nav ul li:nth-last-child(2) {
+    @apply col-span-1;
+  }
+
+  nav a.active {
+    @apply underline decoration-dotted decoration-2 underline-offset-4;
+  }
+
+  nav a.active svg {
+    @apply fill-skin-accent;
+  }
+
+  nav button {
+    @apply p-1;
+  }
+
+  nav button svg {
+    @apply h-6 w-6 fill-skin-base hover:fill-skin-accent;
+  }
+
+  #theme-btn {
+    @apply p-3 sm:p-1;
+  }
+
+  #theme-btn svg {
+    @apply scale-100 hover:rotate-12 sm:scale-100;
+  }
+
+  .menu-icon line {
+    @apply transition-opacity duration-75 ease-in-out;
+  }
+
+  .menu-icon .close {
+    opacity: 0;
+  }
+
+  .menu-icon.is-active .line {
+    @apply opacity-0;
+  }
+
+  .menu-icon.is-active .close {
+    @apply opacity-100;
+  }
+</style>
 
 <script>
   function toggleNav() {

@@ -7,6 +7,7 @@ import { getCollection } from "astro:content";
 import Hr from "@components/Hr.astro";
 import Card from "@components/Card";
 import LinkButton from "@components/LinkButton.astro";
+import Footer from "@components/Footer.astro";
 
 const posts = await getCollection("blog");
 
@@ -19,10 +20,15 @@ const socialCount = SOCIALS.filter((social) => social.active).length;
 
 <Layout>
   <Header />
-  <main>
-    <section>
+  <main id="main-content" class="flex flex-col items-center justify-center">
+    <section id="hero" class="text-center">
       <h1>Logs & spines</h1>
-      <a>
+      <a
+        target="_blank"
+        href="/rss.xml"
+        class="rss-link"
+        aria-label="rss feed"
+        title="RSS Feed">
         <svg xmlns="http://www.w3.org/2000/svg" class="rss-icon"
           ><path
             d="M19 20.001C19 11.729 12.271 5 4 5v2c7.168 0 13 5.832 13 13.001h2z"
@@ -30,9 +36,13 @@ const socialCount = SOCIALS.filter((social) => social.active).length;
             d="M12 20.001h2C14 14.486 9.514 10 4 10v2c4.411 0 8 3.589 8 8.001z"
           ></path><circle cx="6" cy="18" r="2"></circle>
         </svg>
-        <span>RSS Feed</span>
+        <span class="sr-only">RSS Feed</span>
       </a>
-      <img />
+      <img
+        src="/assets/logo.png"
+        alt="Webbedpiyush original logo"
+        class="mx-auto my-3 w-2/4"
+      />
       <p>Write Code , Not Bugs</p>
     </section>
 
@@ -40,7 +50,7 @@ const socialCount = SOCIALS.filter((social) => social.active).length;
     {
       featuredPosts.length > 0 && (
         <>
-          <section>
+          <section id="featured">
             <h2>Featured</h2>
             <ul>
               {featuredPosts.map(({ data, slug }) => (
@@ -59,7 +69,7 @@ const socialCount = SOCIALS.filter((social) => social.active).length;
 
     {
       recentPosts.length > 0 && (
-        <section>
+        <section id="recent-posts">
           <h2>Recent Posts</h2>
           <ul>
             {recentPosts.map(
@@ -77,7 +87,7 @@ const socialCount = SOCIALS.filter((social) => social.active).length;
       )
     }
 
-    <div>
+    <div class="all-posts-btn-wrapper">
       <LinkButton href="/posts/">
         All Posts
         <svg xmlns="http://www.w3.org/2000/svg"
@@ -88,4 +98,45 @@ const socialCount = SOCIALS.filter((social) => social.active).length;
       </LinkButton>
     </div>
   </main>
+  <Footer />
 </Layout>
+
+<style>
+  #hero {
+    @apply pb-6 pt-8;
+  }
+
+  #hero h1 {
+    @apply my-4 inline-block text-3xl font-bold sm:my-8 sm:text-5xl;
+  }
+
+  #hero .rss-link {
+    @apply mb-6;
+  }
+
+  #hero .rss-icon {
+    @apply mb-2 h-6 w-6 scale-110 fill-skin-accent sm:mb-3 sm:scale-125;
+  }
+
+  #hero p {
+    @apply my-2;
+  }
+
+  .social-wrapper {
+    @apply mt-4 flex flex-col items-center;
+  }
+
+  #featured,
+  #recent-posts {
+    @apply pb-6 pt-12;
+  }
+
+  #featured h2,
+  #recent-posts h2 {
+    @apply text-2xl font-semibold tracking-wide;
+  }
+
+  .all-posts-btn-wrapper {
+    @apply my-8 text-center;
+  }
+</style>

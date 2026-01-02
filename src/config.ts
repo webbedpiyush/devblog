@@ -26,26 +26,26 @@ export const SOCIALS: SocialObjects = [
   {
     name: "Github",
     href: "https://github.com/webbedpiyush",
-    linkTitle: ` ${SITE.title} on Github`,
+    linkTitle: ``,
     active: true,
   },
   {
     name: "LinkedIn",
     href: "https://www.linkedin.com/in/piyush-tiwari-89543b260/",
-    linkTitle: `${SITE.title} on LinkedIn`,
+    linkTitle: ``,
     active: true,
   },
   {
     name: "Mail",
     href: "mailto:professional@webbedpiyush.me",
-    linkTitle: `Send an email to ${SITE.title}`,
-    active: false,
+    linkTitle: ``,
+    active: true,
   },
 
   {
     name: "Twitter",
-    href: "https://github.com/webbedpiyush",
-    linkTitle: `${SITE.title} on Twitter`,
-    active: false,
+    href: "https://x.com/piyushhcodes",
+    linkTitle: "",
+    active: true,
   },
 ];
