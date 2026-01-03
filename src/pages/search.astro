@@ -1,0 +1,27 @@
+---
+import Footer from "@components/Footer.astro";
+import Header from "@components/Header.astro";
+import SearchBar from "@components/Search";
+import Layout from "@layouts/Layout.astro";
+import Main from "@layouts/Main.astro";
+import getSortedPosts from "@utils/getSortedPosts";
+import { getCollection } from "astro:content";
+
+const posts = await getCollection("blog", ({ data }: any) => !data.draft);
+const sortedPosts = getSortedPosts(posts);
+
+const searchList = sortedPosts.map(({ data, slug }) => ({
+  title: data.title,
+  description: data.description,
+  data,
+  slug,
+}));
+---
+
+<Layout>
+  <Header />
+  <Main pageTitle={"search"}>
+    <SearchBar searchList={searchList} />
+  </Main>
+  <Footer />
+</Layout>
