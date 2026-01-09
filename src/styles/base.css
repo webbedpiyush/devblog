@@ -1,5 +1,7 @@
 /* Font */
-@import "@fontsource/source-code-pro";
+@import "@fontsource/source-code-pro/400.css";
+@import "@fontsource/source-code-pro/700.css";
+@import "@fontsource/source-code-pro/400-italic.css";
 
 /* Tailwind CSS imports */
 @tailwind base;
