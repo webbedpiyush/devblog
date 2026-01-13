@@ -5,7 +5,7 @@ export const SITE: site = {
   author: "Piyush Tiwari",
   desc: "A devlog containing all my handwritten and exucit blogs",
   title: "Webbedpiyush - Devlog",
-  ogImage: "logo.png",
+  ogImage: "logo1.png",
   lightAndDarkMode: true,
   postPerPage: 3,
   scheduledPostMargin: 15 * 60 * 1000,

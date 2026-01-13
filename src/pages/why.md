@@ -8,7 +8,7 @@ title: "About"
 If you can't find him in a nearby cafeteria, he'll definitely be hiding behind the digital walls of his analysis, apps, or code. As video games, technology, and music are his fuel, Piyush raised a digital garden to document his journey. Strange, isn't it? Sometimes, he also sings forgotten songs in the shape of [GitHub repositories](https://github.com/webbedpiyush).
 
 <div>
-  <img src="/assets/logo.png" style="width: 300px; height: auto; margin: 0 auto; display: block;" alt="Piyush Tiwari avatar.">
+  <img src="/assets/logo1.png" style="width: 300px; height: auto; margin: 0 auto; display: block;" alt="Piyush Tiwari avatar.">
 </div>
 
 In case you want to know more about my work, don't forget to follow:
